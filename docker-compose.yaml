@@ -1,0 +1,29 @@
+
+services:
+  # Serviço do RabbitMQ
+  rabbitmq:
+    image: rabbitmq:3.11-management # Usamos a imagem com a interface de gerenciamento
+    container_name: rabbitmq-server
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"  # Porta padrão para comunicação AMQP
+      - "15672:15672" # Porta para a interface de gerenciamento web
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin      # Usuário de acesso
+      - RABBITMQ_DEFAULT_PASS=password   # Senha de acesso
+    networks:
+      - app-network
+
+  postgres-db:
+    image: postgres:14.5
+    container_name: postgres-database
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=rabbitmq_study_db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - app-network
