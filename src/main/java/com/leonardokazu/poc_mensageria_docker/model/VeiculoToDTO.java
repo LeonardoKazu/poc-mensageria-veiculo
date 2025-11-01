@@ -4,12 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Veiculo implements Serializable {
+@NoArgsConstructor
+public class VeiculoToDTO {
     public String placa;
     public String modelo;
     public String categoria;
