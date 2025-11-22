@@ -1,7 +1,7 @@
 package com.leonardokazu.poc_mensageria_docker.service;
 
 import com.leonardokazu.poc_mensageria_docker.config.VeiculoRabbitMQConfig;
-import com.leonardokazu.poc_mensageria_docker.model.VeiculoToDTO;
+import com.leonardokazu.poc_mensageria_docker.model.Veiculo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -17,7 +17,7 @@ public class VeiculoProducer {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    public void enviarParaCadastro(VeiculoToDTO veiculoDto) {
+    public void enviarParaCadastro(Veiculo veiculoDto) {
         logger.info("[PRODUCER] Enviando veículo com routing key: {}, em {}", VeiculoRabbitMQConfig.ROUTING_KEY_CADASTRAR_VEICULO, java.time.LocalTime.now());
         rabbitTemplate.convertAndSend(
                 VeiculoRabbitMQConfig.EXCHANGE_VEICULO,
